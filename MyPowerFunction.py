@@ -3,6 +3,7 @@ import csv
 import sys
 from time import perf_counter_ns
 
+#recursve POW function returning base^(exponent-1)
 def RecursiveFunction(base, exponent):
     if exponent == 0:
         return 1
@@ -13,8 +14,10 @@ base = 3.14159265359
 exponent = 1
 total = 1
 
+#python auto-caps this, so lets set it so we surely overflow stack!!
 sys.setrecursionlimit(1000000)
 
+#this is where we are writing our data
 with open('datafile.csv', 'w', newline='') as CSVfile:
     writeToMe = csv.writer(CSVfile)
     writeToMe.writerow(["exponent", "recursive time", "iterative time"])
@@ -34,8 +37,8 @@ with open('datafile.csv', 'w', newline='') as CSVfile:
         recursiveTime = perf_counter_ns() - recursiveTime
         #stop timer2
         
+        #write times and numbers to CSV file
         writeToMe.writerow([ exponent, recursiveTime, iterativeTime])
         total = 1
 
-        #write times and numbers to CSV file
-        exponent += 1
+        exponent += 1   #move on to the next exponent
