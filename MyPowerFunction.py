@@ -13,9 +13,9 @@ def RecursiveFunction(base, exponent):
 base = 3.14159265359
 exponent = 1
 total = 1
-
+temp = 0
 #python auto-caps this, so lets set it so we surely overflow stack!!
-sys.setrecursionlimit(1000000)
+sys.setrecursionlimit(200000)
 
 #this is where we are writing our data
 with open('datafile.csv', 'w', newline='') as CSVfile:
@@ -39,6 +39,7 @@ with open('datafile.csv', 'w', newline='') as CSVfile:
         
         #write times and numbers to CSV file
         writeToMe.writerow([ exponent, recursiveTime, iterativeTime])
+
         total = 1
 
-        exponent += 1   #move on to the next exponent
+        exponent += 5   #since we take so many points lets just do every 5
