@@ -10,10 +10,20 @@ def RecursiveFunction(base, exponent):
 
     return base * RecursiveFunction(base, exponent-1)
 
+#iterative POW function using for loop to multiply base by itself n times in a loop
+def IterativeFunction(base, exponent):
+    total = 1
+
+    for i in range(1, exponent+1):
+            total *= base
+
+    return total
+
+
+#start of 'main' program
 base = 3.14159265359
 exponent = 1
-total = 1
-temp = 0
+
 #python auto-caps this, so lets set it so we surely overflow stack!!
 sys.setrecursionlimit(200000)
 
@@ -26,8 +36,7 @@ with open('datafile.csv', 'w', newline='') as CSVfile:
         
         #start timer1
         iterativeTime = perf_counter_ns()
-        for i in range(1, exponent+1):
-            total *= base
+        IterativeFunction(base, exponent)
         iterativeTime = perf_counter_ns() - iterativeTime
         #end timer1
         
